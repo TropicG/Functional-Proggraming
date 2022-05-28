@@ -14,3 +14,5 @@ Here is whaw we have covered with Haskell and what are you about to see in this 
 - anonumous precedurs
 - pattern matching
 - working and understanding lists and pairs
+
+Also this repostory includes problems given to us during exams.
