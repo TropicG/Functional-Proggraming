@@ -1,0 +1,8 @@
+helper:: Int -> Int -> Int
+helper 0 prefix = prefix
+helper num prefix 
+    | (mod num 10) > (mod prefix 10) = helper (div num 10) (prefix*10 + mod num 10)
+    | otherwise = prefix 
+
+reverseOrdSuff :: Int -> Int
+reverseOrdSuff num = helper (div num 10) (mod num 10)

@@ -1,0 +1,34 @@
+#lang racket
+
+
+(define (getnewxs xs newxs)
+
+  (cond
+    [(empty? xs) newxs]
+    [else (getnewxs (cdr xs) (append newxs (list (length (car xs)))))]))
+
+
+(define (search xs next)
+
+  (cond
+    
+    [(and (= (length xs) 2) (not (= (- next (car xs)) 1))) (+ (car xs) 1)]
+    [(and (= (length xs) 2) (= (- next (car xs)) 1)) "No such number"]
+    
+    [(not (= (- next (car xs)) 1)) (+ (car xs) 1)]
+    [else (search (cdr xs) (third xs))]))
+
+(define (check xs)
+
+  (cond
+    [(empty? xs) #f]
+    [(empty? (car xs)) #t]
+    [else (check (cdr xs))]))
+    
+(define (get-missing-length xss)
+
+  (cond
+    [(empty? xss) "Empty list!"]
+    [(check xss) "Empty list!"]
+    [else
+  (search (sort (getnewxs xss '()) <) (second (sort (getnewxs xss '()) <) ))]))

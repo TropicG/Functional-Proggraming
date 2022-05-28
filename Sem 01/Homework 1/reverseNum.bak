@@ -1,0 +1,20 @@
+#lang racket
+
+(define (helper_rev num helper_num)
+  (cond
+    [(< num 10)
+     (+ (* helper_num 10) num)]
+    [else
+     (define remain (remainder num 10))
+     (helper_rev (/ num 10) (+ (* helper_num 10) remain ))]))
+
+(define (rev num)
+
+  (define helper_num 0)
+  
+  (cond
+    [(> 0 num)
+     "The number cant be negative"]
+    [else
+     (helper_rev num helper_num)]))
+    

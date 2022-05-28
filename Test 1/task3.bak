@@ -1,0 +1,14 @@
+#lang racket
+
+(define (getsum n k sum)
+
+  (cond
+    [(< n (expt 5 k)) sum]
+    [else (getsum n (add1 k) (+ sum (floor (/ n (expt 5 k)))))]))
+
+(define (trailing-zeros n)
+
+  (λ (p) (p (getsum n 1 0))))
+
+
+  

@@ -1,0 +1,48 @@
+#lang racket
+(define (growing-plant upSpeed downSpeed desiredHeight)
+
+  (define (calculating upSpeed downSpeed desiredHeight days height)
+  (cond 
+   [(<= desiredHeight height)
+    1]
+   [else
+  (+ days (calculating upSpeed downSpeed desiredHeight days (- (+ height upSpeed) downSpeed)))]))
+      
+ 
+  (define days 0)
+  (define height 0)
+  
+  (cond
+  
+    [(string? upSpeed)
+     "upSpeed should not be a string, it should be a number"]
+
+    [(string? downSpeed)
+     "downSpeed should not be a string, it should be a number"]
+    
+    [(string? desiredHeight)
+     "desiredHeight should not be a string, it should be a number"]
+
+    [(<= upSpeed 0)
+     "upSpeed should be positive"]
+
+    [(<= downSpeed 0)
+     "downSpeed should be positive"]
+
+    [(<= desiredHeight 0)
+     "desiredHeight should be positive"]
+
+    [(< upSpeed downSpeed)
+     "The plant will never grow"]
+    
+    [(< desiredHeight upSpeed)
+     "The plant will grow in 1 day"]
+
+    [else
+     (calculating upSpeed downSpeed desiredHeight days height)]))
+
+
+    
+ 
+
+  

@@ -1,0 +1,11 @@
+#lang racket
+
+(define (inside? xs digit)
+
+  (cond
+    [(empty? xs) #f]
+    [(= (caar xs) digit) #t]
+    [else (inside? (cdr xs) digit)]))
+
+
+  

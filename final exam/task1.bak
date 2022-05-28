@@ -1,0 +1,27 @@
+#lang racket
+
+(define (size num)
+
+  (cond
+    [(< num 10) 1]
+    [else (+ 1 (size (floor(/ num 10))))]))
+
+(define (reverse num newnum)
+
+  (cond
+    [(< num 10) (+ (* newnum 10) num)]
+    [else (reverse (floor(/ num 10)) (+ (* newnum 10) (remainder num 10)))]))
+
+(define (first num size) (floor (/ num (expt 10 (- size 1)))))
+
+(define (helper index originalSize currentsize num newnum)
+
+  (cond
+    [(= index originalSize) (reverse newnum 0)]
+    [(= (remainder index 2) 0) (helper (+ index 1) originalSize (- currentsize 1) (floor (/ num 10)) (+ (* 10 newnum) (first num currentsize)))]
+    [else (helper (+ index 1) originalSize (- currentsize 1) (floor (/ num 10)) newnum)]))
+
+
+(define (every-other num)
+
+  (helper 0 (size num) (size num) num 0 ))

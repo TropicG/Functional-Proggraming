@@ -1,0 +1,18 @@
+timesMet :: [Int] -> Int ->  Int
+timesMet [] num = 0
+timesMet xs num 
+    | (head xs) == num = 1 + timesMet (tail xs) num
+    | otherwise = 0 + timesMet (tail xs) num 
+
+uniques :: [Int] -> [Int] -> Int -> Int
+uniques xs xss sum
+    | (length xss) == 1 = sum
+    | (timesMet xs (head xss)) == 1 = uniques xs (tail xs) (sum + (head xss))
+    | otherwise = uniques xs (tail xs) sum
+
+getAll :: [[Int]] -> Int -> Int
+getAll [] sumuniques = sumuniques
+getAll xs sumuniques = getAll (tail xs) (sumuniques + uniques (head xs) (head xs) 0)
+
+sumUnique :: [[Int]] -> Int
+sumUnique xs = getAll xs 0

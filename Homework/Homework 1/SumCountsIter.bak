@@ -1,0 +1,44 @@
+#lang racket
+
+(define (numDigits num)
+  (cond
+    [(< num 10) 1]
+    [else (+ 1 (numDigits (floor(/ num 10))))]))
+
+(define (inside? num other)
+
+  (cond
+    [(and (= (numDigits num))
+    [(< (numDigits num) (numDigits other)) #f]
+    [(= (remainder num (expt 10 (numDigits other))) other) #t]
+    [else (inside? (floor (/ num 10)) other)]))
+
+(define (sumDigits num)
+
+  (cond
+    [(< num 10) num]
+    [else (+ (remainder num 10) (sumDigits (floor(/ num 10))))]))
+
+
+(define (calculating i x d count)
+
+  (cond
+    [(< x i) (numDigits count)]
+    [(inside? i d) (calculating (add1 i) x d (add1 count))]
+    [else (calculating (add1 i) x d count)]))
+
+
+(define (sum-counts-iter x d)
+
+  (define count 0)
+  (define i 1)
+
+  (cond
+    [(< x 1) "X cant be lower than 1"]
+    [(< x d) 0]
+    [else (calculating i x d count)]))
+    
+
+
+
+    

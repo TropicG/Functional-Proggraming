@@ -1,0 +1,11 @@
+main :: IO()
+main = do 
+    print $ isAscending 123 == True
+    print $ isAscending 122 == True
+    print $ isAscending 0 == True
+    print $ isAscending 10 == False
+
+
+
+isAscending :: Int -> Int
+isAscending num = show num == (sort $ show n)
