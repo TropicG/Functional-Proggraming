@@ -1,0 +1,18 @@
+#lang racket
+
+(define (deleteItem item list) 
+  (cond 
+    ((empty? list) '())
+    ((equal? item (car list)) (cdr list))
+    (else (cons (car list) (deleteItem item (cdr list))))))
+
+(define (calculating list num)
+
+  (cond
+    [(= (length list) 1) (+ (* num 10) (last list))]
+    [else (calculating (deleteItem (last list) list) (+ (* num 10) (last list)))]))
+
+(define (rev-fold list)
+
+  (define num 0)
+  (calculating list num))

@@ -1,0 +1,23 @@
+#lang racket
+
+(define (isThere list elem)
+
+  (cond
+    [(and (= (length list) 1) (equal? (car list)  elem)) #t]
+    [(and (= (length list) 1) (not (equal? (car list) elem))) #f]
+    [(equal? (car list) elem) #t]
+    [else (isThere (cdr list)  elem)]))
+
+(define (union list1 list2)
+
+  (cond
+    [(and (= (length list2) 1) (isThere list1 (car list2))) (cons list1 '())]
+    [(and (= (length list2) 1) (not (isThere list1 (car list2)))) (append list1 (car list2))]
+    [(isThere list1 (car list2)) (union list1 (cdr list2))]
+    [else (union (cons list1 (car list2)) (cdr list2))]))
+
+
+  
+(define (set-union list1 list2)
+
+  (union list1 list2))

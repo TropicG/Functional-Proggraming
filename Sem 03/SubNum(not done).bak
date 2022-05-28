@@ -1,0 +1,24 @@
+#lang racket
+
+(define (numDigits num)
+
+  (cond
+    [(< num 10) 1]
+    [(> num 10) (+ 1 (numDigits (round (/ num 10))))]))
+
+(define (calculating num subnum i)
+
+  (cond
+
+    [(and (= (numDigits num) i) (not (= num subnum))) #f]
+    [(and (= (numDigits num) i) (= num subnum)) #t]
+    [(= (remainder num i) subnum) #t]
+    [else (calculating (round(/ num 10)) subnum i)]))
+    
+    
+
+(define (sub-num? num subnum)
+
+  (define i (numDigits subnum))
+
+  (calculating num subnum i))

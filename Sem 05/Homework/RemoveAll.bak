@@ -1,0 +1,13 @@
+#lang racket
+
+
+(define (removing elem list newList)
+
+  (cond
+    [()
+  
+
+  
+
+(define (remove-all elem list)
+  

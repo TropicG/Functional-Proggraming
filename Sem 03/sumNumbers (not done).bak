@@ -1,0 +1,28 @@
+#lang racket
+
+(define (desending num lastDigit)
+
+  (cond
+    [(and (< (remainder num 10) lastDigit) (< num 10)) #f]
+    [(and (> (remainder num 10) lastDigit) (< num 10)) #t]
+    [(< (remainder num 10) lastDigit) #f]
+    [(>= (remainder num 10) lastDigit) (calculating (floor(/ num 10)) (remainder num 10))]))
+
+(define (calculating x y sum)
+
+  (cond
+    [(> x y) sum]
+    [(< x 10) (calculating (add1 x) y (+ sum x))]
+    [(= (desending (floor(/ x 10)) (remainder x 10)) #t) (calculating (add1 x) y (+ sum x))]
+    [else (calculating (add1 x) y sum)]))
+    
+
+
+
+(define (sum-numbers x y)
+
+  (define sum 0)
+
+  (cond
+    [(> x y) (calculating y x sum)]
+    [else (calculating x y sum)]))

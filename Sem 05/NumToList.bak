@@ -1,0 +1,18 @@
+#lang racket
+(define (lenght num)
+  (cond
+    [(< num 10) 1]
+    [else (+ 1 (lenght (floor(/ num 10))))]))
+
+(define (calculating num lenght list)
+
+  (cond
+    [(< num 10) (cons list num)]
+    [else
+     (calculating (remainder num (expt 10 (- lenght 1))) (- lenght 1) (cons list (floor(/ num (expt 10 (- lenght 1))))))]))
+
+(define (num-to-xs num)
+
+  (calculating (abs num) (lenght (abs num)) '()))
+
+  
